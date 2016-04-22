@@ -1,0 +1,33 @@
+﻿Operating Systems Assignment: Scheduling
+
+Task 2: FCFS Convoy
+
+See /FCFS-Convoy for results
+
+Task 3: Round-Robin Rule of Thumb
+
+See /Thumb/Results folder for results
+
+TEST FILE:
+# RR Thumb Test config file
+DEVICE 1 disk
+DEVICE 2 CD/ROM
+PROGRAM 0 0 Test1/programA.prg 
+PROGRAM 0 0 Test1/programB.prg
+**Test1/programA.prg**
+# Program A for RR Thumb Test
+# Balanced workload mix of IO and CPU bound programs
+CPU 1000
+IO 500 2
+CPU 500
+IO 2000 1
+CPU 1000
+**Test1/programB.prg**
+# Program B for RR Thumb Test
+# Balanced workload mix of IO and CPU bound programs
+CPU 500
+IO 1000 1
+CPU 1000
+IO 2000 2
+CPU 1500
+
