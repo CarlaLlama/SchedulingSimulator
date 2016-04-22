@@ -1,0 +1,97 @@
+Working Directory = /home/carla/Documents/2016/CSC3023F/WLBCAR002_OS/OSAssign
+*** FCFS Simulator ***
+Enter configuration file name:src/ConvoyTest/config.cfg
+Enter cost of system call: 1
+Enter cost of context switch: 3
+Enter trace level: 31
+Time: 0000000000 Kernel: SysCall(MAKE_DEVICE, id=1,name="disk")
+Time: 0000000001 Kernel: SysCall complete
+Time: 0000000001 Kernel: SysCall(MAKE_DEVICE, id=2,name="CD/ROM")
+Time: 0000000002 Kernel: SysCall complete
+Time: 0000000002 Kernel: SysCall(MAKE_DEVICE, id=3,name="keyboard")
+Time: 0000000003 Kernel: SysCall complete
+Time: 0000000000 Kernel: SysCall(EXECVE, name="src/ConvoyTest/test5.prg")
+Time: 0000000001 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="src/ConvoyTest/test5.prg")).
+Time: 0000000004 Kernel: SysCall complete
+Time: 0000000913 Kernel: SysCall(IO_REQUEST, device(id=1), duration=32, process(pid=1, state=RUNNING, name="src/ConvoyTest/test5.prg"))
+Time: 0000000914 Kernel: Context Switch process(pid=1, state=WAITING, name="src/ConvoyTest/test5.prg"), {Idle}).
+Time: 0000000917 Kernel: SysCall complete
+Time: 0000000946 Kernel: Interrupt(WAKE_UP, device(id=1), process(pid=1, state=WAITING, name="src/ConvoyTest/test5.prg"))
+Time: 0000000947 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="src/ConvoyTest/test5.prg")).
+Time: 0000000950 Kernel: Interrupt exit
+Time: 0000002355 Kernel: SysCall(IO_REQUEST, device(id=3), duration=53, process(pid=1, state=RUNNING, name="src/ConvoyTest/test5.prg"))
+Time: 0000002356 Kernel: Context Switch process(pid=1, state=WAITING, name="src/ConvoyTest/test5.prg"), {Idle}).
+Time: 0000002359 Kernel: SysCall complete
+Time: 0000002409 Kernel: Interrupt(WAKE_UP, device(id=3), process(pid=1, state=WAITING, name="src/ConvoyTest/test5.prg"))
+Time: 0000002410 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="src/ConvoyTest/test5.prg")).
+Time: 0000002413 Kernel: Interrupt exit
+Time: 0000002572 Kernel: SysCall(IO_REQUEST, device(id=3), duration=155, process(pid=1, state=RUNNING, name="src/ConvoyTest/test5.prg"))
+Time: 0000002573 Kernel: Context Switch process(pid=1, state=WAITING, name="src/ConvoyTest/test5.prg"), {Idle}).
+Time: 0000002576 Kernel: SysCall complete
+Time: 0000002728 Kernel: Interrupt(WAKE_UP, device(id=3), process(pid=1, state=WAITING, name="src/ConvoyTest/test5.prg"))
+Time: 0000002729 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="src/ConvoyTest/test5.prg")).
+Time: 0000002732 Kernel: Interrupt exit
+Time: 0000003097 Kernel: SysCall(IO_REQUEST, device(id=1), duration=112, process(pid=1, state=RUNNING, name="src/ConvoyTest/test5.prg"))
+Time: 0000003098 Kernel: Context Switch process(pid=1, state=WAITING, name="src/ConvoyTest/test5.prg"), {Idle}).
+Time: 0000003101 Kernel: SysCall complete
+Time: 0000003210 Kernel: Interrupt(WAKE_UP, device(id=1), process(pid=1, state=WAITING, name="src/ConvoyTest/test5.prg"))
+Time: 0000003211 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="src/ConvoyTest/test5.prg")).
+Time: 0000003214 Kernel: Interrupt exit
+Time: 0000005514 Kernel: SysCall(IO_REQUEST, device(id=1), duration=241, process(pid=1, state=RUNNING, name="src/ConvoyTest/test5.prg"))
+Time: 0000005515 Kernel: Context Switch process(pid=1, state=WAITING, name="src/ConvoyTest/test5.prg"), {Idle}).
+Time: 0000005518 Kernel: SysCall complete
+Time: 0000005756 Kernel: Interrupt(WAKE_UP, device(id=1), process(pid=1, state=WAITING, name="src/ConvoyTest/test5.prg"))
+Time: 0000005757 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="src/ConvoyTest/test5.prg")).
+Time: 0000005760 Kernel: Interrupt exit
+Time: 0000006555 Kernel: SysCall(IO_REQUEST, device(id=3), duration=113, process(pid=1, state=RUNNING, name="src/ConvoyTest/test5.prg"))
+Time: 0000006556 Kernel: Context Switch process(pid=1, state=WAITING, name="src/ConvoyTest/test5.prg"), {Idle}).
+Time: 0000006559 Kernel: SysCall complete
+Time: 0000006669 Kernel: Interrupt(WAKE_UP, device(id=3), process(pid=1, state=WAITING, name="src/ConvoyTest/test5.prg"))
+Time: 0000006670 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="src/ConvoyTest/test5.prg")).
+Time: 0000006673 Kernel: Interrupt exit
+Time: 0000007346 Kernel: SysCall(IO_REQUEST, device(id=1), duration=141, process(pid=1, state=RUNNING, name="src/ConvoyTest/test5.prg"))
+Time: 0000007347 Kernel: Context Switch process(pid=1, state=WAITING, name="src/ConvoyTest/test5.prg"), {Idle}).
+Time: 0000007350 Kernel: SysCall complete
+Time: 0000007488 Kernel: Interrupt(WAKE_UP, device(id=1), process(pid=1, state=WAITING, name="src/ConvoyTest/test5.prg"))
+Time: 0000007489 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="src/ConvoyTest/test5.prg")).
+Time: 0000007492 Kernel: Interrupt exit
+Time: 0000007597 Kernel: SysCall(IO_REQUEST, device(id=1), duration=21, process(pid=1, state=RUNNING, name="src/ConvoyTest/test5.prg"))
+Time: 0000007598 Kernel: Context Switch process(pid=1, state=WAITING, name="src/ConvoyTest/test5.prg"), {Idle}).
+Time: 0000007601 Kernel: SysCall complete
+Time: 0000007619 Kernel: Interrupt(WAKE_UP, device(id=1), process(pid=1, state=WAITING, name="src/ConvoyTest/test5.prg"))
+Time: 0000007620 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="src/ConvoyTest/test5.prg")).
+Time: 0000007623 Kernel: Interrupt exit
+Time: 0000008428 Kernel: SysCall(IO_REQUEST, device(id=1), duration=55, process(pid=1, state=RUNNING, name="src/ConvoyTest/test5.prg"))
+Time: 0000008429 Kernel: Context Switch process(pid=1, state=WAITING, name="src/ConvoyTest/test5.prg"), {Idle}).
+Time: 0000008432 Kernel: SysCall complete
+Time: 0000008484 Kernel: Interrupt(WAKE_UP, device(id=1), process(pid=1, state=WAITING, name="src/ConvoyTest/test5.prg"))
+Time: 0000008485 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="src/ConvoyTest/test5.prg")).
+Time: 0000008488 Kernel: Interrupt exit
+Time: 0000009803 Kernel: SysCall(IO_REQUEST, device(id=1), duration=90, process(pid=1, state=RUNNING, name="src/ConvoyTest/test5.prg"))
+Time: 0000009804 Kernel: Context Switch process(pid=1, state=WAITING, name="src/ConvoyTest/test5.prg"), {Idle}).
+Time: 0000009807 Kernel: SysCall complete
+Time: 0000009894 Kernel: Interrupt(WAKE_UP, device(id=1), process(pid=1, state=WAITING, name="src/ConvoyTest/test5.prg"))
+Time: 0000009895 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="src/ConvoyTest/test5.prg")).
+Time: 0000009898 Kernel: Interrupt exit
+Time: 0000010349 Kernel: SysCall(IO_REQUEST, device(id=3), duration=55, process(pid=1, state=RUNNING, name="src/ConvoyTest/test5.prg"))
+Time: 0000010350 Kernel: Context Switch process(pid=1, state=WAITING, name="src/ConvoyTest/test5.prg"), {Idle}).
+Time: 0000010353 Kernel: SysCall complete
+Time: 0000010405 Kernel: Interrupt(WAKE_UP, device(id=3), process(pid=1, state=WAITING, name="src/ConvoyTest/test5.prg"))
+Time: 0000010406 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="src/ConvoyTest/test5.prg")).
+Time: 0000010409 Kernel: Interrupt exit
+Time: 0000010748 Kernel: SysCall(IO_REQUEST, device(id=2), duration=194, process(pid=1, state=RUNNING, name="src/ConvoyTest/test5.prg"))
+Time: 0000010749 Kernel: Context Switch process(pid=1, state=WAITING, name="src/ConvoyTest/test5.prg"), {Idle}).
+Time: 0000010752 Kernel: SysCall complete
+Time: 0000010943 Kernel: Interrupt(WAKE_UP, device(id=2), process(pid=1, state=WAITING, name="src/ConvoyTest/test5.prg"))
+Time: 0000010944 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="src/ConvoyTest/test5.prg")).
+Time: 0000010947 Kernel: Interrupt exit
+Time: 0000012008 Kernel: SysCall(TERMINATE_PROCESS, process(pid=1, state=RUNNING, name="src/ConvoyTest/test5.prg"))
+Time: 0000012009 Kernel: Context Switch process(pid=1, state=TERMINATED, name="src/ConvoyTest/test5.prg"), {Idle}).
+Time: 0000012012 Kernel: SysCall complete
+*** Results ***
+System time: 12012
+Kernel time: 104
+User time: 10682
+Idle time: 1226
+Context switches:26
+CPU utilization: 88.93
