@@ -1,4 +1,0 @@
-# Task 3 Test 1
-DEVICE 1 disk
-PROGRAM 0 0 Test1/programA.prg 
-PROGRAM 0 0 Test1/programB.prg

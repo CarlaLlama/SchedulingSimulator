@@ -2,13 +2,111 @@
 
 Task 2: FCFS Convoy
 
-See /FCFS-Convoy for results
+A test was devised using the provided ProgramGenerator that comprised of five programs (test1.prg to test5.prg). Test1 to Test4 we programmed to have a large number of IO bound processes, and small CPU bursts. Below is an example of test3.prg:
+
+# Program name: test3.prg
+# CPU Generator (lambda=1.0, lower_bound=2, upper_bound=50)
+# IO (lambda=6.0, lower_bound=500, upper_bound=2000, devices=[1, 2, 3])
+CPU 11
+IO 537 3
+CPU 13
+IO 547 1
+CPU 36
+IO 661 3
+CPU 42
+IO 545 2
+CPU 18
+IO 741 1
+CPU 11
+IO 725 2
+CPU 2
+IO 819 2
+CPU 9
+IO 1063 1
+CPU 23
+IO 744 1
+CPU 10
+IO 530 1
+CPU 10
+IO 520 3
+CPU 15
+IO 1275 3
+CPU 8
+
+The fifth program (test5.prg) was CPU bound, thus creating a transition from the IO bound processes in the preceeding four tests.
+The full results of the output of running this test can be seen in /FCFS-Convoy/Results/ConvoyTestOutput1.txt.
+
+In summary the results of this program are:
+
+*** Results ***
+System time: 20653
+Kernel time: 412
+User time: 14079
+Idle time: 6162
+Context switches:94
+CPU utilization: 68.17
+
+Running the program without the fifth (CPU-bound) program resulted in the following output (See ConvoyTestOutput2.txt for full output)
+
+*** Results ***
+System time: 16415
+Kernel time: 371
+User time: 3397
+Idle time: 12647
+Context switches:89
+CPU utilization: 20.69
+
+Running the program with only the fifth (CPU-bound) program resulted in the following output (See ConvoyTestOutput3.txt for full output)
+*** Results ***
+System time: 12012
+Kernel time: 104
+User time: 10682
+Idle time: 1226
+Context switches:26
+CPU utilization: 88.93
+
+It is clear from these results that this test experienced convoy-like behaviour. Running the initial test with all five programs demonstrated a CPU Utilisation of 68%. This is due to the system recovering from having to wait for slow processes, which in term slow down the whole operating system. Below is an extract from the trace of ConvoyTestOutput1.txt, which shows a number of interrupts occurring in a row.
+
+Time: 0000016500 Kernel: SysCall(IO_REQUEST, device(id=1), duration=530, process(pid=4, state=RUNNING, name="src/ConvoyTest/test3.prg"))
+Time: 0000016501 Kernel: Context Switch process(pid=4, state=WAITING, name="src/ConvoyTest/test3.prg"), {Idle}).
+Time: 0000016504 Kernel: SysCall complete
+Time: 0000016793 Kernel: Interrupt(WAKE_UP, device(id=2), process(pid=3, state=WAITING, name="src/ConvoyTest/test4.prg"))
+Time: 0000016794 Kernel: Context Switch {Idle}, process(pid=3, state=READY, name="src/ConvoyTest/test4.prg")).
+Time: 0000016797 Kernel: Interrupt exit
+Time: 0000016829 Kernel: SysCall(IO_REQUEST, device(id=2), duration=735, process(pid=3, state=RUNNING, name="src/ConvoyTest/test4.prg"))
+Time: 0000016830 Kernel: Context Switch process(pid=3, state=WAITING, name="src/ConvoyTest/test4.prg"), {Idle}).
+Time: 0000016833 Kernel: SysCall complete
+Time: 0000017031 Kernel: Interrupt(WAKE_UP, device(id=1), process(pid=4, state=WAITING, name="src/ConvoyTest/test3.prg"))
+Time: 0000017032 Kernel: Context Switch {Idle}, process(pid=4, state=READY, name="src/ConvoyTest/test3.prg")).
+Time: 0000017035 Kernel: Interrupt exit
+Time: 0000017045 Kernel: SysCall(IO_REQUEST, device(id=3), duration=520, process(pid=4, state=RUNNING, name="src/ConvoyTest/test3.prg"))
+Time: 0000017046 Kernel: Context Switch process(pid=4, state=WAITING, name="src/ConvoyTest/test3.prg"), {Idle}).
+Time: 0000017049 Kernel: SysCall complete
+Time: 0000017135 Kernel: Interrupt(WAKE_UP, device(id=2), process(pid=5, state=WAITING, name="src/ConvoyTest/test2.prg"))
+Time: 0000017136 Kernel: Context Switch {Idle}, process(pid=5, state=READY, name="src/ConvoyTest/test2.prg")).
+Time: 0000017139 Kernel: Interrupt exit
+Time: 0000017167 Kernel: SysCall(IO_REQUEST, device(id=3), duration=356, process(pid=5, state=RUNNING, name="src/ConvoyTest/test2.prg"))
+Time: 0000017168 Kernel: Context Switch process(pid=5, state=WAITING, name="src/ConvoyTest/test2.prg"), {Idle}).
+Time: 0000017171 Kernel: SysCall complete
+Time: 0000017566 Kernel: Interrupt(WAKE_UP, device(id=3), process(pid=4, state=WAITING, name="src/ConvoyTest/test3.prg"))
+Time: 0000017567 Kernel: Context Switch {Idle}, process(pid=4, state=READY, name="src/ConvoyTest/test3.prg")).
+Time: 0000017570 Kernel: Interrupt exit
+Time: 0000017585 Kernel: SysCall(IO_REQUEST, device(id=3), duration=1275, process(pid=4, state=RUNNING, name="src/ConvoyTest/test3.prg"))
+Time: 0000017586 Kernel: Context Switch process(pid=4, state=WAITING, name="src/ConvoyTest/test3.prg"), {Idle}).
+Time: 0000017589 Kernel: SysCall complete
+Time: 0000017695 Kernel: Interrupt(WAKE_UP, device(id=2), process(pid=1, state=WAITING, name="src/ConvoyTest/test1.prg"))
+Time: 0000017696 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="src/ConvoyTest/test1.prg")).
+Time: 0000017699 Kernel: Interrupt exit
+
+Adding larger CPU-bound processes distributed the load, resulting in 68%, whereas the same test without the CPU-bound processes in test5.prg resulted in a shocking 21% CPU Utilization.
+The last test (running only test5.prg) showed a CPU utilization of 89%, as the largely CPU-bound process was not big enough to start creating a convoy effect and thus affecting performance.
 
 Task 3: Round-Robin Rule of Thumb
 
-See /Thumb/Results folder for results
+A test was devised that has a well distributed load between IO and CPU-bound processes as seen below:
 
 TEST FILE:
+**Test1/config.cfg
 # RR Thumb Test config file
 DEVICE 1 disk
 DEVICE 2 CD/ROM
@@ -31,3 +129,57 @@ CPU 1000
 IO 2000 2
 CPU 1500
 
+This test was run in 200ms decrements from 2000 to 200. 2000 was chosen as the maximum as it is the maximum IO/CPU burst time given in the program files. When it is run with a time slice of 2000 it is effectively a FCFS implementation.
+
+See /Thumb/Results folder for results
+/Thumb/Results/testrun1.txt shows the output for running the test with 2000 slice time, while testrun10.txt shows the output for running the test with 200 etc.
+
+Experiment Findings:
+
+Tabulated Results:
+
+
+An analysis of the findings shows that the longer time slices produced far less variation in CPU utilization, System Time etc.. This is because the amount of each process time done per time slice is not changing (thus the number of context switches is constant for them).
+The shorter time slices produce far more variation in System Time and Kernel Time, this is because the actual amount of context switches done has increased dramatically, so most of the processing time is spent switching between processes rather than executing (As seen in Figure A below).
+
+
+Figure A.
+An initial deduction would be that the ideal slice time would thus be somewhere in between, such that the context switch overhead does not outweigh the benefits of switching between processes.
+
+Figure B below shows the steep drop in System Time as the size of the time slice  increases from 400 to 600, before evening out to a constant 7027. The Kernel Time experiences a small decline, evening out to a constant of about 42ms at 1600.
+
+Figure B:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figure C below shows a constant User time across all time slices and a drop from 7515ms to 7048 in the first 400 time slice units.
+
+
+
+
+
+
+
+Figure C
+Lastly, figure D shows a sharp increase from 73% to 78% utilization in between 400 and 600 time slices.
+
+Figure D
+Final analysis:
+All of the results seem to show to best improvement in performance vs number of context switches in the range from 400-600. However the number of context switches required between these values is still relatively high (20 – 15). Therefore I would suggest that the ideal time slice is between 600 and 800.

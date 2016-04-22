@@ -103,7 +103,7 @@ public class Config {
                         System.out.println("PROGRAM entry missing program name: \""+line+"\".");
                         System.exit(-1);
                     }
-                    Config.scheduler.schedule(new ExecveEvent(startTime, "src/"+scanner.next(), priority, Config.getKernel())); 
+                    Config.scheduler.schedule(new ExecveEvent(startTime, scanner.next(), priority, Config.getKernel())); 
                 }
                 else if (line.startsWith("DEVICE")) {
                     Scanner scanner = new Scanner(line);
